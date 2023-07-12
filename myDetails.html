@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="HTML, CSS, JavaScript, Ecommerce, Symboils, Clone, Github">
+    <meta name="description"
+        content="This is a clone of pakistani Ecommerce Website Symboils - Made by Azaanullah Khan">
+    <meta name="author" content="Azaanullah Khan">
+
+    <title>Online Shopping in Pakistan - Mobiles, Laptops & Watches | Symbios.pk - Clone</title>
+    <link rel="icon" href="https://www.symbios.pk/image/data/favicon1.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="myDetails.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="./index.html"><img src="https://www.symbios.pk/assets/symbios-logo.png"></a>
+                <button class="myCart h"><i class="fa fa-shopping-cart"></i></button>
+            </div>
+            <div class="search-place">
+                <div class="search">
+                    <input type="text" placeholder="Search...">
+                    <i class="fa fa-search"></i>
+                </div>
+                <button id="n" class="myAccount"><i
+                        class="fa fa-user"></i> <span id="na">My Account</span></button>
+                <button class="myCart"><i class="fa fa-shopping-cart"></i></button>
+            </div>
+            <div class="social">
+                <div class="icon">
+                    <i class="fa fa-calendar"></i>
+                    <small>7 Day Replacement Warranty</small>
+                </div>
+                <div class="icon">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <small style="color: rgb(89, 206, 114);">Message Us On Whatsapp</small>
+                </div>
+                <div class="icon">
+                    <i class="fa-brands fa-facebook"></i>
+                    <small style="color: #3b5998;">Like Us on Facebook</small>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="signin-wrapper">
+        <div class="signin">
+            <div class="signin-container">
+                <h1><b>Change You Account Details</b></h1>
+                <div class="row">
+                    <label for="name" class="imp">Your Name</label>
+                    <input type="text" id="name">
+                </div>
+                <div class="row">
+                    <label for="country">Your Country</label>
+                    <input type="text" id="country">
+                </div>
+                <div class="row">
+                    <label for="phone" class="imp">Your Phone Number</label>
+                    <input type="tel" id="phone" placeholder="+92 |">
+                </div>
+                <div class="row">
+                    <label for="address">Your Address</label>
+                    <textarea id="address" rows="3"></textarea>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 50px;" class="s">
+                    <button onclick="changeDetails()" style="margin: 0;" id="BtnAccount">CHANGE ACCOUNT DETAILS</button>
+                    <button style="margin: 0;" id="logout">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="column">
+            <h1>Brands</h1>
+            <div class="column-inner">
+                <div class="columns">
+                    <p>Apple</p>
+                    <p>Samsung</p>
+                    <p>Nokia</p>
+                    <p>Casio</p>
+                    <p>Black + Decker</p>
+                    <p>Lego</p>
+                    <p>Nikon</p>
+                </div>
+                <div class="columns">
+                    <p>Anex</p>
+                    <p>Dell</p>
+                    <p>HP</p>
+                    <p>Q Mobile</p>
+                    <p>Philips</p>
+                    <p>Fitbit</p>
+                    <p>Braun</p>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <h1>Costumer Service</h1>
+            <div class="column-inner">
+                <div class="columns">
+                    <p>Apple</p>
+                    <p>Samsung</p>
+                    <p>Nokia</p>
+                    <p>Casio</p>
+                    <p>Black + Decker</p>
+                    <p>Lego</p>
+                    <p>Nikon</p>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <h1>Questions</h1>
+            <div class="column-inner">
+                <div class="columns">
+                    <p>Apple</p>
+                    <p>Samsung</p>
+                    <p>Nokia</p>
+                    <p>Casio</p>
+                    <p>Black + Decker</p>
+                    <p>Lego</p>
+                    <p>Nikon</p>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <h1>We Deliver By</h1>
+            <img src="https://www.symbios.pk/catalog/view/theme/default/assets/images/payments/delivery-partner-symbios-tcs.jpg"
+                alt="tcs">
+        </div>
+    </footer>
+    <button class="whatsapp" id="i">
+        <i class="fa-brands fa-whatsapp"></i>
+    </button>
+    <button class="chat" id="ii">
+        <i class="fa-brands fa-facebook-messenger"></i>
+    </button>
+    <script>
+        window.addEventListener('scroll', function () {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 250) {
+                document.getElementById('i').style.opacity = '1';
+                document.getElementById('i').style.visibility = 'visible';
+                document.getElementById('ii').style.bottom = '20px';
+                document.getElementById('ii').style.transform = 'rotate(360deg)';
+            } else {
+                document.getElementById('i').style.opacity = '0';
+                document.getElementById('i').style.visibility = 'hidden';
+                document.getElementById('ii').style.bottom = '-150px';
+                document.getElementById('ii').style.transform = 'rotate(0deg)';
+            }
+        });
+    </script>
+    <script src="myDetails.js" type="module"></script>
+</body>
+
+</html>
