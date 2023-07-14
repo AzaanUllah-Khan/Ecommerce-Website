@@ -1,6 +1,6 @@
 
 var localname = localStorage.getItem('Name')
-if(localname.length > 10){
+if(localname && localname.length > 10){
     localname = localname.slice(0, 8)+"..."
 }
 else{
@@ -15,7 +15,7 @@ else{
     document.getElementById('n').setAttribute('onclick', 'window.location.href="login.html"')
 }
 window.addEventListener('scroll', function () {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 250) {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 2000) {
         document.getElementById('i').style.opacity = '1';
         document.getElementById('i').style.visibility = 'visible';
         document.getElementById('ii').style.bottom = '20px';
@@ -159,3 +159,6 @@ const mainLatestContainer4 = document.querySelector('.f');
                 behavior: 'smooth'
             });
         }, scrollSpeed4);
+
+
+        

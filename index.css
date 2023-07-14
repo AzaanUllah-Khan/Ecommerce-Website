@@ -306,7 +306,7 @@ li:hover::before {
         left: 0;
         transform: skew(0deg);
     }
-
+    
     100% {
         left: 0;
         opacity: 0;
@@ -323,25 +323,25 @@ li:hover::before {
 }
 
 @keyframes change {
-
+    
     0%,
     20% {
-        background-image: url('https://www.symbios.pk/catalog/view/theme/default/assets/images/sliders/gas-12.gif');
+        background-image: url('./img/gas-12.gif');
     }
-
+    
     25%,
     45% {
-        background-image: url('https://www.symbios.pk/catalog/view/theme/default/assets/images/sliders/banar.jpg');
+        background-image: url('./img/banar.jpg');
     }
-
+    
     50%,
     70% {
-        background-image: url('https://www.symbios.pk/catalog/view/theme/default/assets/images/sliders/HAJJ%20BANNER%20PSD%20changes%202.jpg');
+        background-image: url('./img/HAJJ%20BANNER%20PSD%20changes%202.jpg');
     }
-
+    
     75%,
-    95% {
-        background-image: url('https://www.symbios.pk/catalog/view/theme/default/assets/images/sliders/banner%20(%20C%20PANNEL%20).jpg');
+    100% {
+        background-image: url('./img/banner%20(%20C%20PANNEL%20).jpg');
     }
 }
 
@@ -577,6 +577,64 @@ li:hover::before {
     text-align: center;
     font-size: 12px;
 }
+.chatter{
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    bottom: 90px;
+    right: 0px;
+    padding: 15px 10px;
+    width: 300px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, .2);
+    color: black;
+    font-size: 12px;
+    font-weight: lighter;
+}
+.chatter div:nth-child(1){
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: black;
+    padding: 0 10px;
+    margin-bottom: 20px;
+}
+.chatter div:nth-child(1) img{
+   width: 60px;
+}
+.chatter div div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.chatter i{
+    font-size: 12px;
+}
+.chatter div:nth-child(1) i{
+    font-size: 14px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #121e21;
+    background-color: rgba(0, 0, 0, 0.04);
+}
+.chatter h1{
+    font-size: 18px;
+    margin-bottom: 80px;
+    text-align: left;
+    padding-left: 10px;
+}
+.chat p{
+    width: 100%;
+    background-color: #de2b34;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
 @media screen and (max-width: 1150px) {
     .logo img {
         width: 150px;
@@ -743,5 +801,13 @@ li:hover::before {
     }
     .c{
         width: 100% !important;
+    }
+}
+@media screen and (max-width:339px) {
+    .chatter{
+        /* width: 100%; */
+        bottom: 0;
+        right: 0;
+        position: fixed;
     }
 }
