@@ -1,24 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-analytics.js";
-import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
-
-
-document.getElementById('name').value = localStorage.getItem('Name')
-document.getElementById('country').value = localStorage.getItem('Country')
-document.getElementById('phone').value = localStorage.getItem('Phone')
-document.getElementById('address').value = localStorage.getItem('Address')
-
-const btnAccount = document.getElementById('BtnAccount')
-btnAccount.addEventListener('click', () => {
-    localStorage.setItem('Name', document.getElementById('name').value)
-    localStorage.setItem('Country', document.getElementById('country').value)
-    localStorage.setItem('Phone', document.getElementById('phone').value)
-    localStorage.setItem('Address', document.getElementById('address').value)
-    alert('Account details updated')
-
-})
-
-
+import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAzZTOJPWdD_1-aA73_WJyxYOEjthJwxP4",
@@ -33,6 +16,44 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth();
+const db = getFirestore(app);
+
+onAuthStateChanged(auth, async (user) => {
+    if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        const uid = user.uid;
+        const querySnapshot = await getDocs(collection(db, "users"));
+        querySnapshot.forEach((doc) => {
+            if (doc.id == uid) {
+                console.log(`${doc.id} => ${JSON.stringify(doc.data().name)}`);
+                document.getElementById('name').value = doc.data().name
+                document.getElementById('country').value = doc.data().country
+                document.getElementById('phone').value = doc.data().phone
+                document.getElementById('address').value = doc.data().address
+            }
+        });
+        // ...
+    } else {
+        // User is signed out
+        // ...
+    }
+});
+
+
+const btnAccount = document.getElementById('BtnAccount')
+btnAccount.addEventListener('click', () => {
+    localStorage.setItem('Name', document.getElementById('name').value)
+    localStorage.setItem('Country', document.getElementById('country').value)
+    localStorage.setItem('Phone', document.getElementById('phone').value)
+    localStorage.setItem('Address', document.getElementById('address').value)
+    alert('Account details updated')
+
+})
+
+
+
+
 const btn = document.getElementById("logout");
 btn.addEventListener("click", () => {
     signOut(auth).then(() => {
