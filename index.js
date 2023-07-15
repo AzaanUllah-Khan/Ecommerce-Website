@@ -1,14 +1,55 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-analytics.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
 
-var localname = localStorage.getItem('Name')
-if (localname && localname.length > 10) {
-    localname = localname.slice(0, 8) + "..."
-}
-else {
-    localname = localname
-}
+const firebaseConfig = {
+    apiKey: "AIzaSyAzZTOJPWdD_1-aA73_WJyxYOEjthJwxP4",
+    authDomain: "ecommerce-website-3d42f.firebaseapp.com",
+    projectId: "ecommerce-website-3d42f",
+    storageBucket: "ecommerce-website-3d42f.appspot.com",
+    messagingSenderId: "952174919940",
+    appId: "1:952174919940:web:c7bcfc4d3663592dc7d051",
+    measurementId: "G-X9HDJQ3PS0"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const auth = getAuth();
+const db = getFirestore(app);
+// var localname = localStorage.getItem('Name')
+// if (localname && localname.length > 10) {
+//     localname = localname.slice(0, 8) + "..."
+// }
+// else {
+//     localname = localname
+// }
 if (localStorage.getItem('logged') == 'true') {
-    document.getElementById('na').innerText = localname || "My Account";
+    // document.getElementById('na').innerText = localname || "My Account";
     document.getElementById('n').setAttribute('onclick', 'window.location.href="myDetails.html"')
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            // User is signed in, see docs for a list of available properties
+            // https://firebase.google.com/docs/reference/js/auth.user
+            const uid = user.uid;
+            const querySnapshot = await getDocs(collection(db, "users"));
+            querySnapshot.forEach((doc) => {
+                if (doc.id == uid) {
+                    console.log(`${doc.id} => ${JSON.stringify(doc.data().name)}`);
+                    if(doc.data().name.length > 10){
+                        document.getElementById('na').innerHTML = (doc.data().name).slice(0,8) + " ..."
+                    }
+                    else{
+                        document.getElementById('na').innerHTML = doc.data().name
+                    }
+                }
+            });
+            // ...
+        } else {
+            // User is signed out
+            // ...
+        }
+    });
 }
 else {
     document.getElementById('na').innerText = "My Account"

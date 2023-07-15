@@ -489,6 +489,7 @@ footer p {
 
     .s button:nth-child(1) {
         align-self: flex-start;
+        width: 100%;
     }
 
     .s button:nth-child(2) {
