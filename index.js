@@ -36,10 +36,10 @@ if (localStorage.getItem('logged') == 'true') {
             querySnapshot.forEach((doc) => {
                 if (doc.id == uid) {
                     console.log(`${doc.id} => ${JSON.stringify(doc.data().name)}`);
-                    if(doc.data().name.length > 10){
-                        document.getElementById('na').innerHTML = (doc.data().name).slice(0,8) + " ..."
+                    if (doc.data().name.length > 10) {
+                        document.getElementById('na').innerHTML = (doc.data().name).slice(0, 8) + " ..."
                     }
-                    else{
+                    else {
                         document.getElementById('na').innerHTML = doc.data().name
                     }
                 }
@@ -55,6 +55,102 @@ else {
     document.getElementById('na').innerText = "My Account"
     document.getElementById('n').setAttribute('onclick', 'window.location.href="login.html"')
 }
+
+
+
+
+
+var p1 = document.getElementById('p1')
+var p2 = document.getElementById('p2')
+var p3 = document.getElementById('p3')
+var p4 = document.getElementById('p4')
+
+fetch('https://dummyjson.com/products')
+    .then(res => res.json())
+    .then(res => {
+        console.log(res);
+        for (var i = 0; i < 9; i++) {
+            p1.innerHTML += `
+            <div class="mainProduct">
+            <div class="img">
+            <img
+                src="${res.products[i].images[0]}">
+            <span>NEW</span>
+            </div>
+            <p class="detailMain"><b>${(res.products[i].title).slice(0,27)+"..."}</b> <hr/ style='margin:10px 0; background-color: white; opacity: 0.4'> <p>${(res.products[i].description).slice(0,50)+  ' ...'}</p></p>
+            <div class="price">
+            <h1>$ ${((res.products[i].price) * (res.products[i].discountPercentage) / 100).toFixed(3)}</h1><small>$ ${res.products[i].price}</small>
+            </div>
+            <button>ORDER NOW</button>
+                         </div>
+            `
+        }
+        for (var i = 9; i < 20; i++) {
+            p2.innerHTML += `
+            <div class="mainProduct oo">
+            <div class="img">
+            <img
+                src="${res.products[i].images[0]}">
+            <span>NEW</span>
+            </div>
+            <p class="detailMain"><b>${(res.products[i].title).slice(0,27)+"..."}</b> <hr/ style='margin:10px 0; background-color: white; opacity: 0.4'> <p>${(res.products[i].description).slice(0,50)+  ' ...'}</p></p>
+            <div class="price">
+            <h1>$ ${((res.products[i].price) * (res.products[i].discountPercentage) / 100).toFixed(3)}</h1><small>$ ${res.products[i].price}</small>
+            </div>
+            <button>ORDER NOW</button>
+                             </div>
+            `
+        }
+        for (var i = 20; i < 29; i++) {
+            p3.innerHTML += `
+            <div class="mainProduct tt">
+            <div class="img">
+            <img
+                src="${res.products[i].images[0]}">
+            <span>NEW</span>
+            </div>
+            <p class="detailMain"><b>${(res.products[i].title).slice(0,27)+"..."}</b> <hr/ style='margin:10px 0; background-color: white; opacity: 0.4'> <p>${(res.products[i].description).slice(0,50)+  ' ...'}</p></p>
+            <div class="price">
+            <h1>$ ${((res.products[i].price) * (res.products[i].discountPercentage) / 100).toFixed(3)}</h1><small>$ ${res.products[i].price}</small>
+            </div>
+            <button>ORDER NOW</button>
+                         </div>
+            `
+        }
+        for (var i = 15; i < res.products.length; i++) {
+            p4.innerHTML += `
+            <div class="mainProduct ff">
+            <div class="img">
+            <img
+                src="${res.products[i].images[0]}">
+            <span>NEW</span>
+            </div>
+            <p class="detailMain"><b>${(res.products[i].title).slice(0,23)+"..."}</b> <hr/ style='margin:10px 0; background-color: white; opacity: 0.4'> <p>${(res.products[i].description).slice(0,50)+  ' ...'}</p></p>
+            <div class="price">
+            <h1>$ ${((res.products[i].price) * (res.products[i].discountPercentage) / 100).toFixed(3)}</h1><small>$ ${res.products[i].price}</small>
+            </div>
+            <button>ORDER NOW</button>
+                                 </div>
+                                 `
+        }
+    }
+    );
+
+
+// Product Card Template
+// < div class="mainProduct ff" >
+//                         <div class="img">
+//                             <img
+//                                 src="./img/gaba-national-gns-1819m-15-ton-split-air-conditioner-with-official-warranty-image1-600x600__07857_zoom.jpg">
+//                             <span>NEW</span>
+//                         </div>
+//                         <p class="detailMain">Gaba National GNS-1819M Non-Inverter Split Ai..</p>
+//                         <div class="price">
+//                             <h1>Rs.148,499</h1><small>155,899</small>
+//                         </div>
+//                         <button>ORDER NOW</button>
+//                     </div >
+
 window.addEventListener('scroll', function () {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 2000) {
         document.getElementById('i').style.opacity = '1';
@@ -65,13 +161,13 @@ window.addEventListener('scroll', function () {
         if (document.getElementById('innerii').classList.contains('open')) {
             document.getElementById('innerii').classList.toggle('open')
         }
-        else{
-            setTimeout(()=>{
+        else {
+            setTimeout(() => {
                 document.getElementById('i').style.opacity = '0';
                 document.getElementById('i').style.visibility = 'hidden';
                 document.getElementById('ii').style.bottom = '-150px';
                 document.getElementById('ii').style.transform = 'rotate(0deg)';
-            },1000)
+            }, 1000)
         }
     }
 });
