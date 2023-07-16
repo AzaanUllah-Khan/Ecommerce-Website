@@ -64,12 +64,17 @@ var p1 = document.getElementById('p1')
 var p2 = document.getElementById('p2')
 var p3 = document.getElementById('p3')
 var p4 = document.getElementById('p4')
-
+var p5 = document.getElementById('p5')
 fetch('https://dummyjson.com/products')
     .then(res => res.json())
     .then(res => {
-        console.log(res);
-        for (var i = 0; i < 9; i++) {
+        var rForP5 = Math.floor(Math.random() * res.products.length)
+        rForP5 = JSON.parse(rForP5)
+        var rForP1 = Math.floor(Math.random() * res.products.length - 10)
+        rForP1 = JSON.parse(rForP5)
+        console.log(res.products);
+        console.log(rForP5);
+        for (var i = rForP1; i < rForP1 + 11; i++) {
             p1.innerHTML += `
             <div class="mainProduct">
             <div class="img">
@@ -77,7 +82,7 @@ fetch('https://dummyjson.com/products')
                 src="${res.products[i].images[0]}">
             <span>NEW</span>
             </div>
-            <p class="detailMain"><b>${(res.products[i].title).slice(0,27)+"..."}</b> <hr/ style='margin:10px 0; background-color: white; opacity: 0.4'> <p>${(res.products[i].description).slice(0,50)+  ' ...'}</p></p>
+            <p class="detailMain"><b>${(res.products[i].title).slice(0, 23) + "..."}</b> <hr/ style='margin:10px 0; background-color: white; opacity: 0.4'> <p>${(res.products[i].description).slice(0, 50) + ' ...'}</p></p>
             <div class="price">
             <h1>$ ${((res.products[i].price) * (res.products[i].discountPercentage) / 100).toFixed(3)}</h1><small>$ ${res.products[i].price}</small>
             </div>
@@ -85,31 +90,34 @@ fetch('https://dummyjson.com/products')
                          </div>
             `
         }
-        for (var i = 9; i < 20; i++) {
-            p2.innerHTML += `
+        for (var i = 0; i < res.products.length; i++) {
+            if (res.products[i].category == "laptops") {
+                p2.innerHTML += `
             <div class="mainProduct oo">
             <div class="img">
             <img
                 src="${res.products[i].images[0]}">
             <span>NEW</span>
             </div>
-            <p class="detailMain"><b>${(res.products[i].title).slice(0,27)+"..."}</b> <hr/ style='margin:10px 0; background-color: white; opacity: 0.4'> <p>${(res.products[i].description).slice(0,50)+  ' ...'}</p></p>
+            <p class="detailMain"><b>${(res.products[i].title).slice(0, 23) + "..."}</b> <hr/ style='margin:10px 0; background-color: white; opacity: 0.4'> <p>${(res.products[i].description).slice(0, 50) + ' ...'}</p></p>
             <div class="price">
             <h1>$ ${((res.products[i].price) * (res.products[i].discountPercentage) / 100).toFixed(3)}</h1><small>$ ${res.products[i].price}</small>
             </div>
             <button>ORDER NOW</button>
                              </div>
             `
+            }
         }
-        for (var i = 20; i < 29; i++) {
-            p3.innerHTML += `
+        for (var i = 0; i < res.products.length; i++) {
+            if (res.products[i].category == "smartphones")
+                p3.innerHTML += `
             <div class="mainProduct tt">
             <div class="img">
             <img
                 src="${res.products[i].images[0]}">
             <span>NEW</span>
             </div>
-            <p class="detailMain"><b>${(res.products[i].title).slice(0,27)+"..."}</b> <hr/ style='margin:10px 0; background-color: white; opacity: 0.4'> <p>${(res.products[i].description).slice(0,50)+  ' ...'}</p></p>
+            <p class="detailMain"><b>${(res.products[i].title).slice(0, 23) + "..."}</b> <hr/ style='margin:10px 0; background-color: white; opacity: 0.4'> <p>${(res.products[i].description).slice(0, 50) + ' ...'}</p></p>
             <div class="price">
             <h1>$ ${((res.products[i].price) * (res.products[i].discountPercentage) / 100).toFixed(3)}</h1><small>$ ${res.products[i].price}</small>
             </div>
@@ -117,15 +125,16 @@ fetch('https://dummyjson.com/products')
                          </div>
             `
         }
-        for (var i = 15; i < res.products.length; i++) {
-            p4.innerHTML += `
+        for (var i = 0; i < res.products.length; i++) {
+            if (res.products[i].category == "home-decoration" || res.products[i].category == "skincare")
+                p4.innerHTML += `
             <div class="mainProduct ff">
             <div class="img">
             <img
                 src="${res.products[i].images[0]}">
             <span>NEW</span>
             </div>
-            <p class="detailMain"><b>${(res.products[i].title).slice(0,23)+"..."}</b> <hr/ style='margin:10px 0; background-color: white; opacity: 0.4'> <p>${(res.products[i].description).slice(0,50)+  ' ...'}</p></p>
+            <p class="detailMain"><b>${(res.products[i].title).slice(0, 23) + "..."}</b> <hr/ style='margin:10px 0; background-color: white; opacity: 0.4'> <p>${(res.products[i].description).slice(0, 50) + ' ...'}</p></p>
             <div class="price">
             <h1>$ ${((res.products[i].price) * (res.products[i].discountPercentage) / 100).toFixed(3)}</h1><small>$ ${res.products[i].price}</small>
             </div>
@@ -133,23 +142,21 @@ fetch('https://dummyjson.com/products')
                                  </div>
                                  `
         }
+        p5.innerHTML = `
+        <div class="mainProduct" style="padding: 0;">
+                            <div class="img" style='width: 100%'>
+                                <img src="${res.products[rForP5].images[0]}" style="height: auto; object-fit: contain; width: 100%;">
+                                <span style="width: auto; height: auto; padding: 5px 10px; border-radius: 0px; right: -30px">Featured</span>
+                            </div>
+                            <p class="detailMain"><b>${(res.products[rForP5].title).slice(0, 23) + "..."}</b> <hr/ style='margin:10px 0; background-color: white; opacity: 0.4'> <p>${(res.products[rForP5].description).slice(0, 50) + ' ...'}</p></p>
+                            <div class="price" style="margin-top: 30px;">
+                            <h1>$ ${((res.products[rForP5].price) * (res.products[rForP5].discountPercentage) / 100).toFixed(3)}</h1><small>$ ${res.products[rForP5].price}</small>
+                            </div>
+                            <button>ORDER NOW</button>
+                        </div>
+        `
     }
     );
-
-
-// Product Card Template
-// < div class="mainProduct ff" >
-//                         <div class="img">
-//                             <img
-//                                 src="./img/gaba-national-gns-1819m-15-ton-split-air-conditioner-with-official-warranty-image1-600x600__07857_zoom.jpg">
-//                             <span>NEW</span>
-//                         </div>
-//                         <p class="detailMain">Gaba National GNS-1819M Non-Inverter Split Ai..</p>
-//                         <div class="price">
-//                             <h1>Rs.148,499</h1><small>155,899</small>
-//                         </div>
-//                         <button>ORDER NOW</button>
-//                     </div >
 
 window.addEventListener('scroll', function () {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 2000) {
@@ -157,157 +164,36 @@ window.addEventListener('scroll', function () {
         document.getElementById('i').style.visibility = 'visible';
         document.getElementById('ii').style.bottom = '20px';
         document.getElementById('ii').style.transform = 'rotate(360deg)';
-    } else {
-        if (document.getElementById('innerii').classList.contains('open')) {
-            document.getElementById('innerii').classList.toggle('open')
-        }
-        else {
-            setTimeout(() => {
-                document.getElementById('i').style.opacity = '0';
-                document.getElementById('i').style.visibility = 'hidden';
-                document.getElementById('ii').style.bottom = '-150px';
-                document.getElementById('ii').style.transform = 'rotate(0deg)';
-            }, 1000)
-        }
     }
 });
-const mainLatestContainer = document.querySelector('.mainLatest');
-const mainProductWidth = document.querySelector('.mainProduct').offsetWidth;
-const scrollSpeed = 2000;
-
-// Function to handle the scroll event
-function handleScroll() {
-    // Calculate the current scroll position
-    const scrollLeft = mainLatestContainer.scrollLeft;
-
-    // Check if we have reached the end of the container
-    if (scrollLeft + mainLatestContainer.clientWidth >= mainLatestContainer.scrollWidth) {
-        // Scroll back to the beginning with smooth behavior
-        setTimeout(() => {
-            mainLatestContainer.scrollTo({
-                left: 0,
-                behavior: 'smooth'
-            })
-        }, scrollSpeed)
-    }
-}
 
 
-// Add the scroll event listener
-mainLatestContainer.addEventListener('scroll', handleScroll);
 
-// Start the scrolling animation
-setInterval(() => {
-    // Scroll to the next position with a smooth behavior
-    mainLatestContainer.scrollTo({
-        left: mainLatestContainer.scrollLeft + mainProductWidth,
-        behavior: 'smooth'
-    });
-}, scrollSpeed);
-const mainLatestContainer2 = document.querySelector('.o');
-const mainProductWidth2 = document.querySelector('.oo').offsetWidth;
-const scrollSpeed2 = 2000;
-
-// Function to handle the scroll event
-function handleScroll2() {
-    // Calculate the current scroll position
-    const scrollLeft = mainLatestContainer2.scrollLeft;
-
-    // Check if we have reached the end of the container
-    if (scrollLeft + mainLatestContainer2.clientWidth >= mainLatestContainer2.scrollWidth) {
-        // Scroll back to the beginning with smooth behavior
-        setTimeout(() => {
-            mainLatestContainer2.scrollTo({
-                left: 0,
-                behavior: 'smooth'
-            });
-        }, scrollSpeed2)
-    }
-}
-
-// Add the scroll event listener
-mainLatestContainer2.addEventListener('scroll', handleScroll2);
-
-// Start the scrolling animation
-setInterval(() => {
-    // Scroll to the next position with a smooth behavior
-    mainLatestContainer2.scrollTo({
-        left: mainLatestContainer2.scrollLeft + mainProductWidth2,
-        behavior: 'smooth'
-    });
-}, scrollSpeed2);
-
-
-const mainLatestContainer3 = document.querySelector('.t');
-const mainProductWidth3 = document.querySelector('.tt').offsetWidth;
-const scrollSpeed3 = 2000;
-
-// Function to handle the scroll event
-function handleScroll3() {
-    // Calculate the current scroll position
-    const scrollLeft = mainLatestContainer3.scrollLeft;
-
-    // Check if we have reached the end of the container
-    if (scrollLeft + mainLatestContainer3.clientWidth >= mainLatestContainer3.scrollWidth) {
-        // Scroll back to the beginning with smooth behavior
-        setTimeout(() => {
-            mainLatestContainer3.scrollTo({
-                left: 0,
-                behavior: 'smooth'
-            })
-        }, scrollSpeed3)
-    }
-}
-
-
-// Add the scroll event listener
-mainLatestContainer3.addEventListener('scroll', handleScroll3);
-
-// Start the scrolling animation
-setInterval(() => {
-    // Scroll to the next position with a smooth behavior
-    mainLatestContainer3.scrollTo({
-        left: mainLatestContainer3.scrollLeft + mainProductWidth3,
-        behavior: 'smooth'
-    });
-}, scrollSpeed3);
-
-
-const mainLatestContainer4 = document.querySelector('.f');
-const mainProductWidth4 = document.querySelector('.ff').offsetWidth;
-const scrollSpeed4 = 2000;
-
-// Function to handle the scroll event
-function handleScroll4() {
-    // Calculate the current scroll position
-    const scrollLeft = mainLatestContainer4.scrollLeft;
-
-    // Check if we have reached the end of the container
-    if (scrollLeft + mainLatestContainer4.clientWidth >= mainLatestContainer4.scrollWidth) {
-        // Scroll back to the beginning with smooth behavior
-        setTimeout(() => {
-            mainLatestContainer4.scrollTo({
-                left: 0,
-                behavior: 'smooth'
-            })
-        }, scrollSpeed4)
-    }
-}
-
-
-// Add the scroll event listener
-mainLatestContainer4.addEventListener('scroll', handleScroll4);
-
-// Start the scrolling animation
-setInterval(() => {
-    // Scroll to the next position with a smooth behavior
-    mainLatestContainer4.scrollTo({
-        left: mainLatestContainer4.scrollLeft + mainProductWidth4,
-        behavior: 'smooth'
-    });
-}, scrollSpeed4);
-
-
-document.getElementById('ii').addEventListener('click', () => {
+document.getElementById('iii').addEventListener('click', () => {
     document.getElementById('innerii').classList.toggle('open')
+})
+document.getElementById('-').addEventListener('click', () => {
+    document.getElementById('innerii').classList.toggle('open')
+})
+var open = false
+document.getElementById('+').addEventListener('click', () => {
+    if (!open) {
+        document.getElementById('u').style.visibility = "visible"
+        document.getElementById('u').style.opacity = "1"
+        open = true
+    }
+    else {
+        document.getElementById('u').style.visibility = "hidden"
+        document.getElementById('u').style.opacity = "0"
+        open = false
+    }
+})
+
+document.getElementById("chatBtn").addEventListener('click',()=>{
+    if(localStorage.getItem('logged') == "true"){
+        alert('a')
+    }
+    if(localStorage.getItem('logged') == "false"){
+        alert('n')
+    }
 })

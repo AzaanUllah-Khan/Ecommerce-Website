@@ -251,13 +251,13 @@ footer p {
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .08);
 }
 
-ul {
+.left ul {
     list-style: none;
     display: flex;
     flex-direction: column;
 }
 
-li {
+.left ul li {
     position: relative;
     font-size: 13px;
     color: #666666;
@@ -268,7 +268,7 @@ li {
     border-radius: 5px;
 }
 
-li::after {
+.left ul li::after {
     content: "\f105";
     position: absolute;
     color: #bababa;
@@ -280,7 +280,7 @@ li::after {
     transition: all .2s ease-in-out;
 }
 
-li::before {
+.left ul li::before {
     content: " ";
     width: 100%;
     height: 100%;
@@ -292,12 +292,12 @@ li::before {
     transform: skew(-35deg);
 }
 
-li:hover::after {
+.left ul li:hover::after {
     color: #de2b34;
     font-size: 11px;
 }
 
-li:hover::before {
+.left ul li:hover::before {
     animation: fade 1s linear;
 }
 
@@ -599,24 +599,27 @@ li:hover::before {
 
 .chatter {
     background-color: rgb(255, 255, 255);
-    position: absolute;
+    position: fixed;
     bottom: 90px;
     right: 0px;
     /* padding: 15px 10px; */
-    width: 340px;
+    width: 375px;
     border-radius: 15px;
     box-shadow: 0 4px 12px 0 rgba(0, 0, 0, .2);
     color: black;
     font-size: 12px;
     font-weight: lighter;
-    max-height: 0;
     overflow: hidden;
-    transition: all .6s ease-in-out;
+    transition: transform .2s ease-in-out, opacity .1s ease-in-out;
+    padding: 20px;
+    opacity: 0;
+    transform: scale(0,0);
+    transform-origin: bottom right;
 }
 
 .chatter.open {
-    padding: 20px;
-    max-height: 350px;
+    opacity: 1;
+    transform: scale(1,1);
     overflow: hidden;
 }
 
@@ -630,7 +633,7 @@ li:hover::before {
 }
 
 .chatter div:nth-child(1) img {
-    width: 70px;
+    width: 65px;
 }
 
 .chatter div div {
@@ -653,10 +656,15 @@ li:hover::before {
     border-radius: 50%;
     color: #121e21;
     background-color: rgba(0, 0, 0, 0.04);
+    transition: all .5s ease-in-out;
+}
+.chatter div:nth-child(1) i:hover {
+    background-color: rgba(0, 0, 0, 0.06);
 }
 
 .chatter h1 {
-    font-size: 20px;
+    font-size: 17px;
+    margin-top: 20px;
     margin-bottom: 150px;
     text-align: left;
     padding-left: 10px;
@@ -666,13 +674,37 @@ li:hover::before {
     width: 100%;
     background-color: #aa1e22;
     color: white;
-    padding: 10px;
-    border-radius: 10px;
-    font-size: 16px;
+    padding: 12px 10px;
+    border-radius: 16px;
+    font-size: 18px;
     font-weight: bolder;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+}
+.chat p:hover {
+    background-color: #a11d21;
+}
+.chatter .above ul{
+    display: flex;
+    text-align: left;
+    flex-direction: column;
+    background-color: white;
+    padding: 10px 10px 5px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .1);
+    list-style: none;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 50px;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .2s ease-in-out;
 }
 
+.chatter .above ul li{
+    margin-bottom: 5px;
+    font-size: 15px;
+}
 @media screen and (max-width: 1150px) {
     .logo img {
         width: 150px;
@@ -859,13 +891,23 @@ li:hover::before {
     }
 }
 
-@media screen and (max-width:380px) {
+@media screen and (max-width:400px) {
     .chatter,
     .chatter.open {
         width: 300px;
     }
+    .chatter div:nth-child(1) img{
+        width: 55px;
+    }
+    .chatter h1{
+        font-size: 16px;
+        margin-bottom: 100px;
+    }
+    .chatter p{
+        font-size: 14px;
+    }
     .chatter.open {
-        padding: 15px;
+        padding: 15px 10px;
     }
 }
 @media screen and (max-width:280px) {

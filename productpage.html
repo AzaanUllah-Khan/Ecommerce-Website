@@ -15,14 +15,14 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
     <header>
         <nav>
             <div class="logo">
-                <a href="./index.html"><img src="https://www.symbios.pk/assets/symbios-logo.png"></a>
+                <a href="./index.html"><img src="./img/symbios-logo.png"></a>
                 <button class="myCart h"><i class="fa fa-shopping-cart"></i></button>
             </div>
             <div class="search-place">
@@ -30,7 +30,7 @@
                     <input type="text" placeholder="Search...">
                     <i class="fa fa-search"></i>
                 </div>
-                <button id="n" class="myAccount"><i
+                <button id="n" class="myAccount" onclick="window.location.href='./login.html'"><i
                         class="fa fa-user"></i> <span id="na">My Account</span></button>
                 <button class="myCart"><i class="fa fa-shopping-cart"></i></button>
             </div>
@@ -50,46 +50,7 @@
             </div>
         </nav>
     </header>
-    <div class="signin-wrapper">
-        <div class="signin">
-            <div class="signin-container">
-                <h1><b>Register for a Customer Account</b></h1>
-                <p>If you already have an account with us, please <a href="login.html">Login here</a></p>
-                <p style="margin-top: 10px; color: #a1a1a1;"><a>*</a> fields are neccessary to fill out</p>
-                <div class="row">
-                    <label for="name" class="imp">Your Name</label>
-                    <input type="text" id="name">
-                </div>
-                <div class="row">
-                    <label for="email" class="imp">Email Address</label>
-                    <input type="text" id="email">
-                </div>
-                <div class="row">
-                    <label for="password" class="imp">Password</label>
-                    <input type="text" id="password">
-                </div>
-                <div class="row">
-                    <label for="country">Your Country</label>
-                    <input type="text" id="country">
-                </div>
-                <div class="row">
-                    <label for="phone" class="imp">Your Phone Number</label>
-                    <input type="tel" id="phone" placeholder="+92 |">
-                </div>
-                <div class="row">
-                    <label for="address">Your Address</label>
-                    <textarea id="address" rows="3"></textarea>
-                </div>
-                <div class="bottom">
-                    <div>
-                        <input type="checkbox" name="rember">
-                        <label for="rember">I have read and Agreed to The <a><b>Privacy Policy</b></a></label>
-                    </div>
-                </div>
-                <button id="signBtn">SIGNUP</button>
-            </div>
-        </div>
-    </div>
+
     <footer>
         <div class="column">
             <h1>Brands</h1>
@@ -148,22 +109,7 @@
                 alt="tcs">
         </div>
     </footer>
-    <script>
-        window.addEventListener('scroll', function () {
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 250) {
-                document.getElementById('i').style.opacity = '1';
-                document.getElementById('i').style.visibility = 'visible';
-                document.getElementById('ii').style.bottom = '20px';
-                document.getElementById('ii').style.transform = 'rotate(360deg)';
-            } else {
-                document.getElementById('i').style.opacity = '0';
-                document.getElementById('i').style.visibility = 'hidden';
-                document.getElementById('ii').style.bottom = '-150px';
-                document.getElementById('ii').style.transform = 'rotate(0deg)';
-            }
-        });
-    </script>
-        <script type="module" src="signup.js"></script>
+    <script src="index.js" type="module"></script>
 </body>
 
 </html>

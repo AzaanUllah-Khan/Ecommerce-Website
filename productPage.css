@@ -1,0 +1,272 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background-color: #f3f3f3;
+}
+
+header {
+    background-color: white;
+    width: 100%;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav {
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.logo {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo img {
+    width: 195px;
+}
+
+.search-place {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 50%;
+}
+
+.search-place .search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 2px solid #de2b34;
+    border-radius: 5px;
+    width: 350px;
+    padding: 5px 15px;
+}
+
+.search input {
+    width: 100%;
+    padding: 5px;
+    outline: none;
+    border: none;
+    font-size: 18px;
+}
+
+button.myAccount {
+    padding: 10px 0;
+    border: 2px solid #de2b34;
+    background-color: transparent;
+    outline: none;
+    border-radius: 5px;
+    font-size: 18px;
+    color: #de2b34;
+    cursor: pointer;
+    width: 150px;
+}
+
+button.myAccount:hover i {
+    color: #de2b34;
+}
+
+button.myAccount:hover {
+    color: #2a6496;
+}
+
+button.myCart {
+    padding: 10px 0;
+    border: 2px solid #de2b34;
+    background-color: transparent;
+    outline: none;
+    border-radius: 5px;
+    font-size: 18px;
+    color: #de2b34;
+    cursor: pointer;
+    position: relative;
+    width: 50px;
+    text-align: center;
+}
+
+button.myCart::after {
+    content: "0";
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #de2b34;
+    color: white;
+    font-size: 18px;
+}
+
+.social {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+}
+
+.social .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    width: 100px;
+    cursor: pointer;
+}
+
+.icon i {
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 50%;
+    font-size: 18px;
+}
+
+.icon small {
+    text-align: center;
+    font-size: 12px;
+    display: none;
+}
+
+.icon:hover i {
+    display: none;
+}
+
+.icon:hover small {
+    display: block;
+}
+
+
+footer {
+    background-color: #2a2a2a;
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+    padding: 30px 10px;
+    color: white;
+    text-transform: uppercase;
+    height: 258px;
+}
+
+.column-inner {
+    display: flex;
+    gap: 50px;
+}
+
+footer h1 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+footer p {
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+@media screen and (max-width: 1150px) {
+    .logo img {
+        width: 150px;
+    }
+
+    .search-place .search {
+        width: 250px;
+    }
+
+    .search input {
+        font-size: 14px;
+    }
+
+    button.myAccount {
+        width: 120px;
+        font-size: 14px;
+    }
+
+    button.myCart {
+        width: 50px;
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width:850px) {
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .logo {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .search-place {
+        margin-top: 10px;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .search-place .search {
+        width: 500px;
+    }
+
+    .search input {
+        font-size: 18px;
+    }
+
+    .social {
+        width: 100%;
+        justify-content: space-evenly;
+        margin-top: 10px;
+    }
+
+    .social .icon {
+        width: 70px;
+    }
+
+    .icon i {
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    button.myAccount {
+        width: 150px;
+        padding: 13px 0;
+    }
+
+    button.myCart {
+        display: none;
+    }
+
+    nav .logo .h {
+        display: block;
+        border: none;
+        padding: 0;
+        font-size: 35px;
+    }
+
+    nav .logo .h::after {
+        display: none;
+    }
+
+    button.myAccount span {
+        display: none;
+    }
+}
