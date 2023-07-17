@@ -86,7 +86,7 @@ fetch('https://dummyjson.com/products')
             <div class="price">
             <h1>$ ${((res.products[i].price) * (res.products[i].discountPercentage) / 100).toFixed(3)}</h1><small>$ ${res.products[i].price}</small>
             </div>
-            <button>ORDER NOW</button>
+            <button onclick="product(${i})">ORDER NOW</button>
                          </div>
             `
         }
@@ -96,14 +96,14 @@ fetch('https://dummyjson.com/products')
             <div class="mainProduct oo">
             <div class="img">
             <img
-                src="${res.products[i].images[0]}">
+                src="${res.products[i].thumbnail}">
             <span>NEW</span>
             </div>
             <p class="detailMain"><b>${(res.products[i].title).slice(0, 23) + "..."}</b> <hr/ style='margin:10px 0; background-color: white; opacity: 0.4'> <p>${(res.products[i].description).slice(0, 50) + ' ...'}</p></p>
             <div class="price">
             <h1>$ ${((res.products[i].price) * (res.products[i].discountPercentage) / 100).toFixed(3)}</h1><small>$ ${res.products[i].price}</small>
             </div>
-            <button>ORDER NOW</button>
+            <button onclick="product(${i})">ORDER NOW</button>
                              </div>
             `
             }
@@ -114,14 +114,14 @@ fetch('https://dummyjson.com/products')
             <div class="mainProduct tt">
             <div class="img">
             <img
-                src="${res.products[i].images[0]}">
+                src="${res.products[i].thumbnail}">
             <span>NEW</span>
             </div>
             <p class="detailMain"><b>${(res.products[i].title).slice(0, 23) + "..."}</b> <hr/ style='margin:10px 0; background-color: white; opacity: 0.4'> <p>${(res.products[i].description).slice(0, 50) + ' ...'}</p></p>
             <div class="price">
             <h1>$ ${((res.products[i].price) * (res.products[i].discountPercentage) / 100).toFixed(3)}</h1><small>$ ${res.products[i].price}</small>
             </div>
-            <button>ORDER NOW</button>
+            <button onclick="product(${i})">ORDER NOW</button>
                          </div>
             `
         }
@@ -131,30 +131,38 @@ fetch('https://dummyjson.com/products')
             <div class="mainProduct ff">
             <div class="img">
             <img
-                src="${res.products[i].images[0]}">
+                src="${res.products[i].thumbnail}">
             <span>NEW</span>
             </div>
             <p class="detailMain"><b>${(res.products[i].title).slice(0, 23) + "..."}</b> <hr/ style='margin:10px 0; background-color: white; opacity: 0.4'> <p>${(res.products[i].description).slice(0, 50) + ' ...'}</p></p>
             <div class="price">
             <h1>$ ${((res.products[i].price) * (res.products[i].discountPercentage) / 100).toFixed(3)}</h1><small>$ ${res.products[i].price}</small>
             </div>
-            <button>ORDER NOW</button>
-                                 </div>
-                                 `
+            <button onclick="product(${i})">ORDER NOW</button>
+            </div>
+            `
         }
         p5.innerHTML = `
         <div class="mainProduct" style="padding: 0;">
-                            <div class="img" style='width: 100%'>
-                                <img src="${res.products[rForP5].images[0]}" style="height: auto; object-fit: contain; width: 100%;">
-                                <span style="width: auto; height: auto; padding: 5px 10px; border-radius: 0px; right: -30px">Featured</span>
-                            </div>
-                            <p class="detailMain"><b>${(res.products[rForP5].title).slice(0, 23) + "..."}</b> <hr/ style='margin:10px 0; background-color: white; opacity: 0.4'> <p>${(res.products[rForP5].description).slice(0, 50) + ' ...'}</p></p>
-                            <div class="price" style="margin-top: 30px;">
-                            <h1>$ ${((res.products[rForP5].price) * (res.products[rForP5].discountPercentage) / 100).toFixed(3)}</h1><small>$ ${res.products[rForP5].price}</small>
-                            </div>
-                            <button>ORDER NOW</button>
+        <div class="img" style='width: 100%'>
+        <img src="${res.products[rForP5].thumbnail}" style="height: auto; object-fit: contain; width: 100%;">
+        <span style="width: auto; height: auto; padding: 5px 10px; border-radius: 0px; right: -30px">Featured</span>
+        </div>
+        <p class="detailMain"><b>${(res.products[rForP5].title).slice(0, 23) + "..."}</b> <hr/ style='margin:10px 0; background-color: white; opacity: 0.4'> <p>${(res.products[rForP5].description).slice(0, 50) + ' ...'}</p></p>
+        <div class="price" style="margin-top: 30px;">
+        <h1>$ ${((res.products[rForP5].price) * (res.products[rForP5].discountPercentage) / 100).toFixed(3)}</h1><small>$ ${res.products[rForP5].price}</small>
+        </div>
+        <button onclick="product(${rForP5})">ORDER NOW</button>
                         </div>
-        `
+                        `
+        function product(index) {
+            var currentProduct = res.products[index]
+            currentProduct = JSON.stringify(currentProduct)
+            console.log(currentProduct);
+            localStorage.setItem('Current Product',currentProduct)
+            window.location.href = "productpage.html"
+        }
+        window.product = product
     }
     );
 
@@ -189,11 +197,11 @@ document.getElementById('+').addEventListener('click', () => {
     }
 })
 
-document.getElementById("chatBtn").addEventListener('click',()=>{
-    if(localStorage.getItem('logged') == "true"){
+document.getElementById("chatBtn").addEventListener('click', () => {
+    if (localStorage.getItem('logged') == "true") {
         alert('a')
     }
-    if(localStorage.getItem('logged') == "false"){
+    if (localStorage.getItem('logged') == "false") {
         alert('n')
     }
 })

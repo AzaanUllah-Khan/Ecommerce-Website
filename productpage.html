@@ -15,7 +15,7 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="productPage.css">
 </head>
 
 <body>
@@ -50,6 +50,59 @@
             </div>
         </nav>
     </header>
+
+
+
+
+    <div class="main">
+        <div class="image">
+            <div class="mainImage">
+                <img src="" id="img">
+            </div>
+            <div class="productimages" id="imgDiv"></div>
+        </div>
+        <div class="detailsOfProduct">
+            <h1 id="title"></h1>
+            <h2 id="brand"></h2>
+            <h2>Delivery Time <span>2-5 days</span></h2>
+            <div class="price">
+                <h1 id="finalPrice"></h1>
+                <h2 id="realPrice"></h2>
+                <h3 id="discountPerc"></h3>
+            </div>
+            <div class="stars" id="star">
+            </div>
+            <div class="btn">
+                <input type="number" placeholder="Quantity">
+                <button><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        <p id="desc"></p>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <footer>
         <div class="column">
@@ -109,7 +162,45 @@
                 alt="tcs">
         </div>
     </footer>
-    <script src="index.js" type="module"></script>
+    <script>
+        const storedObject = JSON.parse(localStorage.getItem('Current Product'));
+        var img = document.getElementById('img')
+        var imgDiv = document.getElementById('imgDiv')
+        var title = document.getElementById('title')
+        var brand = document.getElementById('brand')
+        var finalPrice = document.getElementById('finalPrice')
+        var realPrice = document.getElementById('realPrice')
+        var discountPerc = document.getElementById('discountPerc')
+        var desc = document.getElementById('desc')
+        var starDiv = document.getElementById('star')
+        var stars = Math.floor(Math.random()*5)+1
+        console.log(stars);
+
+        function settingDetails() {
+            img.src = storedObject.thumbnail
+            for(i=0;i<storedObject.images.length;i++){
+                imgDiv.innerHTML += `
+                <img src="${storedObject.images[i]}" onclick="heroImg(this.src)">
+                `
+            }
+            title.innerText = storedObject.title
+            desc.innerText = storedObject.description
+            brand.innerHTML = `Brand: <span>${storedObject.brand}</span>`
+            realPrice.innerText = "$ "+storedObject.price
+            finalPrice.innerText = "$ "+(storedObject.price * (storedObject.discountPercentage) / 100).toFixed(3)
+            discountPerc.innerText = `${storedObject.discountPercentage}% OFF`
+            for(i=0;i<stars;i++){
+                starDiv.innerHTML += `
+                <i class="fa fa-star"></i>`
+            }
+        }
+        settingDetails()
+        
+        function heroImg(img){
+            document.getElementById('img').src = img
+        }
+
+    </script>
 </body>
 
 </html>
