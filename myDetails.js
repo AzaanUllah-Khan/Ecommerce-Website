@@ -85,3 +85,13 @@ btn.addEventListener("click", () => {
         alert('Cant logout The Account')
     });
 })
+
+function a() {
+    const cartPseudo = document.getElementById('cart');
+    const productInCart = localStorage.getItem('products');
+    const parsedProducts = JSON.parse(productInCart) || []; // Parse the string as JSON, or use an empty array if null or undefined
+    const productCount = parsedProducts.length;
+    cartPseudo.setAttribute('data-value', productCount);
+  }
+  
+  setInterval(a, 1000);

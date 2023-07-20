@@ -79,7 +79,7 @@ fetch('https://dummyjson.com/products')
             <div class="mainProduct">
             <div class="img">
             <img
-                src="${res.products[i].images[0]}">
+                src="${res.products[i].thumbnail}">
             <span>NEW</span>
             </div>
             <p class="detailMain"><b>${(res.products[i].title).slice(0, 23) + "..."}</b> <hr/ style='margin:10px 0; background-color: white; opacity: 0.4'> <p>${(res.products[i].description).slice(0, 50) + ' ...'}</p></p>
@@ -159,7 +159,7 @@ fetch('https://dummyjson.com/products')
             var currentProduct = res.products[index]
             currentProduct = JSON.stringify(currentProduct)
             console.log(currentProduct);
-            localStorage.setItem('Current Product',currentProduct)
+            localStorage.setItem('Current Product', currentProduct)
             window.location.href = "productpage.html"
         }
         window.product = product
@@ -205,3 +205,12 @@ document.getElementById("chatBtn").addEventListener('click', () => {
         alert('n')
     }
 })
+function a() {
+    const cartPseudo = document.getElementById('cart');
+    const productInCart = localStorage.getItem('products');
+    const parsedProducts = JSON.parse(productInCart) || []; // Parse the string as JSON, or use an empty array if null or undefined
+    const productCount = parsedProducts.length;
+    cartPseudo.setAttribute('data-value', productCount);
+  }
+  
+  setInterval(a, 1000);

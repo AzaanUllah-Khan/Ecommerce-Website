@@ -15,14 +15,14 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="myDetails.css">
+    <link rel="stylesheet" href="cart.css">
 </head>
 
 <body>
     <header>
         <nav>
             <div class="logo">
-                <a href="./index.html"><img src="https://www.symbios.pk/assets/symbios-logo.png"></a>
+                <a href="./index.html"><img src="./img/symbios-logo.png"></a>
                 <button class="myCart h"><i class="fa fa-shopping-cart"></i></button>
             </div>
             <div class="search-place">
@@ -30,9 +30,10 @@
                     <input type="text" placeholder="Search...">
                     <i class="fa fa-search"></i>
                 </div>
-                <button id="n" class="myAccount"><i class="fa fa-user"></i> <span id="na">My Account</span></button>
-                <button class="myCart" id="cart" onclick="location.replace('./cart.html')"><i class="fa fa-shopping-cart"></i></button>
-            </div>
+                <button id="n" class="myAccount" onclick="window.location.href='./login.html'"><i
+                        class="fa fa-user"></i> <span id="na">My Account</span></button>
+                        <button class="myCart" id="cart" onclick="location.replace('./cart.html')"><i class="fa fa-shopping-cart"></i></button>
+                    </div>
             <div class="social">
                 <div class="icon">
                     <i class="fa fa-calendar"></i>
@@ -49,34 +50,38 @@
             </div>
         </nav>
     </header>
-    <div class="signin-wrapper">
-        <div class="signin">
-            <div class="signin-container">
-                <h1><b>Change You Account Details</b></h1>
-                <div class="row">
-                    <label for="name" class="imp">Your Name</label>
-                    <input type="text" id="name">
-                </div>
-                <div class="row">
-                    <label for="country">Your Country</label>
-                    <input type="text" id="country">
-                </div>
-                <div class="row">
-                    <label for="phone" class="imp">Your Phone Number</label>
-                    <input type="tel" id="phone" placeholder="+92 |">
-                </div>
-                <div class="row">
-                    <label for="address">Your Address</label>
-                    <textarea id="address" rows="3"></textarea>
-                </div>
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 50px;"
-                    class="s">
-                    <button style="margin: 0;" id="BtnAccount">CHANGE ACCOUNT DETAILS</button>
-                    <button style="margin: 0;" id="logout">Logout</button>
-                </div>
-            </div>
+
+
+
+    <div class="main">
+        <div class="a">    
+            <h1>Cart Products</h1>
         </div>
+        <ul id="eL"></ul>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <footer>
         <div class="column">
             <h1>Brands</h1>
@@ -135,31 +140,8 @@
                 alt="tcs">
         </div>
     </footer>
-    <button class="whatsapp" id="i">
-        <i class="fa-brands fa-whatsapp"></i>
-    </button>
-    <button class="chat" id="ii">
-        <i class="fa-brands fa-facebook-messenger"></i>
-    </button>
-    <script>
-        window.addEventListener('scroll', function () {
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 250) {
-                document.getElementById('i').style.opacity = '1';
-                document.getElementById('i').style.visibility = 'visible';
-                document.getElementById('ii').style.bottom = '20px';
-                document.getElementById('ii').style.transform = 'rotate(360deg)';
-            } else {
-                document.getElementById('i').style.opacity = '0';
-                document.getElementById('i').style.visibility = 'hidden';
-                document.getElementById('ii').style.bottom = '-150px';
-                document.getElementById('ii').style.transform = 'rotate(0deg)';
-            }
-        });
-    </script>
-    <script src="myDetails.js" type="module"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-
+    <footer style="padding: 10px; height: auto; border-top: 1px solid whitesmoke;">MADE BY AZAANULLAH KHAN</footer>
+    <script src="cart.js"></script>
 </body>
 
 </html>
