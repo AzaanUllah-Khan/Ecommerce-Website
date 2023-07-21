@@ -206,7 +206,7 @@ li div{
     width: 350px;
 }
 li .aa{
-    width: 150px;
+    width: fit-content;
     align-items: center;
     justify-content: space-between;
     padding-right: 40px;
@@ -444,6 +444,8 @@ ul li:hover::before {
     .signin{
         padding: 20px;
     }
-
+li.aa{
+    padding: 0;
+}
 
 }

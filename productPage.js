@@ -25,6 +25,39 @@ function add() {
     // addProduct();
     updateStoredProducts();
 
+    Swal.fire({
+        title: `Product Added To Cart`,
+        icon: 'success',
+        showCancelButton: true,
+        confirmButtonText: 'View Cart'
+    }).then((result) => {
+/* Read more about isConfirmed, isDenied below */
+if (result.isConfirmed) {
+    let timerInterval
+    Swal.fire({
+      title: 'Redirecting',
+      html: 'You will Redirected to cart after <b></b> milliseconds.',
+      timer: 1000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading()
+        const b = Swal.getHtmlContainer().querySelector('b')
+        timerInterval = setInterval(() => {
+          b.textContent = Swal.getTimerLeft()
+        }, 100)
+      },
+      willClose: () => {
+        clearInterval(timerInterval)
+      }
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        location.replace('./cart.html' )
+      }
+    })
+}
+});
+
 }
 
 function a() {

@@ -31,8 +31,7 @@
                     <input type="text" placeholder="Search...">
                     <i class="fa fa-search"></i>
                 </div>
-                <button id="n" class="myAccount"><i
-                        class="fa fa-user"></i> <span id="na">My Account</span></button>
+                <button id="n" class="myAccount"><i class="fa fa-user"></i> <span id="na">My Account</span></button>
                 <button class="myCart" id="cart" onclick="location.replace('./cart.html')"><i
                         class="fa fa-shopping-cart"></i></button>
             </div>
@@ -86,7 +85,7 @@
                     class="s">
                     <button style="margin: 0;" id="BtnAccount" onclick="location.replace('./cart.html')">
                         < Back To Cart</button>
-                            <button style="margin: 0;" id="logout">BUY</button>
+                            <button style="margin: 0;" id="logout" onclick="appS()">BUY</button>
                 </div>
             </div>
         </div>
@@ -124,9 +123,27 @@
 
             }
         }
-
+        var tp = 0
+        for (i = 0; i < products.length; i++) {
+            tp = tp + products[i].price.slice(2) * products[i].qaun
+        }
+        document.getElementById('price').value = "$ " + tp
+        function appS() {
+            Swal.fire({
+                title: `Purchased !`,
+                text: `Order sent to admin, Wait for its approval | Transaction Amount Deducted ${tp}`,
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+            setTimeout(() => {
+                location.replace('./index.html')
+                localStorage.removeItem('products')
+            }, 2000)
+        }
     </script>
     <script type="module" src="checkout.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
 </body>
 
 </html>

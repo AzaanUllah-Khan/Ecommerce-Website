@@ -39,8 +39,3 @@ onAuthStateChanged(auth, async (user) => {
         // ...
     }
 });
-var tp = 0
-for(i=0;i<products.length;i++){
-    tp = tp + products[i].price.slice(2) * products[i].qaun
-}
-document.getElementById('price').value = "$ "+tp
