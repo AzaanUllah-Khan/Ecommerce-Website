@@ -12,11 +12,12 @@ function addProduct() {
     document.getElementById("eL").innerHTML = "";
     if (products.length == 0) {
         document.getElementById('eL').innerHTML = "<h1 style='text-align: center; color: #ccc; font-weight: bolder; font-size: 22px; padding-bottom: 15px;'>Nothing To Show Here !</h1>"
+        document.getElementById('checkOut').style.display = "none"
     }
     for (i = 0; i < products.length; i++) {
         document.getElementById("eL").innerHTML += `
-    <li>
-    <div class="aaa">
+        <li>
+        <div class="aaa">
     <div>
     <img src="${products[i].img}">
     <p>${products[i].title.length > 30 ? `${products[i].title.slice(0, 30)}...` : products[i].title} </p>
@@ -29,6 +30,7 @@ function addProduct() {
     <p class="q">${products[i].qaun}</p>
     </li>
     `;
+    document.getElementById('checkOut').style.display = "flex"
 
     }
 }

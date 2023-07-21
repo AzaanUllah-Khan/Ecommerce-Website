@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="HTML, CSS, JavaScript, Ecommerce, Symboils, Clone, Github">
+    <meta name="description"
+        content="This is a clone of pakistani Ecommerce Website Symboils - Made by Azaanullah Khan">
+    <meta name="author" content="Azaanullah Khan">
+
+    <title>Online Shopping in Pakistan - Mobiles, Laptops & Watches | Symbios.pk - Clone</title>
+    <link rel="icon" href="https://www.symbios.pk/image/data/favicon1.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="checkout.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="./index.html"><img src="./img/symbios-logo.png"></a>
+                <button class="myCart h" onclick="location.replace('./cart.html')"><i
+                        class="fa fa-shopping-cart"></i></button>
+            </div>
+            <div class="search-place">
+                <div class="search">
+                    <input type="text" placeholder="Search...">
+                    <i class="fa fa-search"></i>
+                </div>
+                <button id="n" class="myAccount"><i
+                        class="fa fa-user"></i> <span id="na">My Account</span></button>
+                <button class="myCart" id="cart" onclick="location.replace('./cart.html')"><i
+                        class="fa fa-shopping-cart"></i></button>
+            </div>
+            <div class="social">
+                <div class="icon">
+                    <i class="fa fa-calendar"></i>
+                    <small>7 Day Replacement Warranty</small>
+                </div>
+                <div class="icon">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <small style="color: rgb(89, 206, 114);">Message Us On Whatsapp</small>
+                </div>
+                <div class="icon">
+                    <i class="fa-brands fa-facebook"></i>
+                    <small style="color: #3b5998;">Like Us on Facebook</small>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="main">
+        <div class="products">
+            <h1 class="s">Products</h1>
+            <ul id="eL"></ul>
+        </div>
+        <div class="input">
+            <h1>Total Bill</h1>
+            <input type="text" readonly id="price">
+        </div>
+    </div>
+    <div class="signin-wrapper">
+        <div class="signin">
+            <div class="signin-container">
+                <h1><b>User Details</b></h1>
+                <div class="row">
+                    <label for="name" class="imp">Your Name</label>
+                    <input type="text" id="name">
+                </div>
+                <div class="row">
+                    <label for="country">Your Country</label>
+                    <input type="text" id="country">
+                </div>
+                <div class="row">
+                    <label for="phone" class="imp">Your Phone Number</label>
+                    <input type="tel" id="phone" placeholder="+92 |">
+                </div>
+                <div class="row">
+                    <label for="address">Your Address</label>
+                    <textarea id="address" rows="3"></textarea>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 50px;"
+                    class="s">
+                    <button style="margin: 0;" id="BtnAccount" onclick="location.replace('./cart.html')">
+                        < Back To Cart</button>
+                            <button style="margin: 0;" id="logout">BUY</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var products = getStoredProducts()
+        addProduct()
+
+        function getStoredProducts() {
+            var storedProducts = localStorage.getItem('products')
+            return storedProducts ? JSON.parse(storedProducts) : [];
+        }
+        function updateStoredProducts() {
+            localStorage.setItem('products', JSON.stringify(products));
+        }
+        function addProduct() {
+            document.getElementById("eL").innerHTML = "";
+            if (products.length == 0) {
+                document.getElementById('eL').innerHTML = "<h1 style='text-align: center; color: #ccc; font-weight: bolder; font-size: 22px; padding-bottom: 15px;'>Nothing To Show Here !</h1>"
+            }
+            for (i = 0; i < products.length; i++) {
+                document.getElementById("eL").innerHTML += `
+    <li>
+    <div class="aaa">
+    <div>
+    <p>${products[i].title} </p>
+    </div>
+    <div class="aa">
+    <p class="p">${products[i].price}</p>
+    </div>
+    </div>
+    <p class="q">X ${products[i].qaun}</p>
+    </li>
+    `;
+
+            }
+        }
+
+    </script>
+    <script type="module" src="checkout.js"></script>
+</body>
+
+</html>
