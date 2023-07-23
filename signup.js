@@ -26,6 +26,15 @@ btn.addEventListener('click', () => {
     const country = document.getElementById('country').value  
     const phone = document.getElementById('phone').value  
     const address = document.getElementById('address').value  
+
+    if (!name || !email || !password || !country || !phone || !address) {
+      Swal.fire({
+        text: `Please fill all the fields`,
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
+      return; // Return early if any field is missing
+    }
     createUserWithEmailAndPassword(auth, email, password)
     .then(async(userCredential) => {
         // Signed in 
@@ -43,6 +52,12 @@ btn.addEventListener('click', () => {
           } catch (e) {
             console.error("Error adding document: ", e);
           }
+
+          Swal.fire({
+            text: `User Signed Up !`,
+            icon: 'success',
+            confirmButtonText: 'OK'
+          });
         // localStorage.setItem('Name', name)
         // localStorage.setItem('Country', country)
         // localStorage.setItem('Phone', phone)
@@ -55,5 +70,29 @@ btn.addEventListener('click', () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
+        if (errorMessage === "Firebase: Error (auth/invalid-email).") {
+          Swal.fire({
+            text: `Invalid Email Address`,
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+      }
+      else if (errorMessage === "Firebase: Password should be at least 6 characters (auth/weak-password).") {
+        Swal.fire({
+          text: `Password Should Be Atleast 6 Characters Long`,
+          icon: 'error',
+          confirmButtonText: 'OK'
+      });
+        }
+        else if (errorMessage === "Firebase: Error (auth/email-already-in-use).") {
+          Swal.fire({
+            text: `This email Is Already Taken`,
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+        }
+        else {
+          console.log(errorMessage);
+        }
     });
 })

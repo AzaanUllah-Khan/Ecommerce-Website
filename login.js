@@ -29,11 +29,22 @@ btn.addEventListener('click', () => {
                 if (!user.emailVerified) {
                     sendEmailVerification(auth.currentUser)
                         .then(() => {
-                            alert(`Verification Email Sent to ${user.email}`)
+                            Swal.fire({
+                                title: "Verify Your ID",
+                                text: `Verification Email Sent to ${user.email}`,
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                              })
                         });
                 } else {
-                    window.location.href = 'index.html'
-                    localStorage.setItem('logged', true)
+                    Swal.fire({
+                        text: `User Signed Up !`,
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                      }).then(()=>{
+                          window.location.href = 'index.html'
+                          localStorage.setItem('logged', true)
+                        });
                     // ...
                 }
                 const uid = user.uid;
@@ -45,6 +56,34 @@ btn.addEventListener('click', () => {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorCode, errorMessage);
+            if (errorMessage === "Firebase: Error (auth/invalid-email).") {
+                Swal.fire({
+                  text: `Invalid Email Address`,
+                  icon: 'error',
+                  confirmButtonText: 'OK'
+              });
+            }
+              else if (errorMessage === "Firebase: Error (auth/user-not-found).") {
+                Swal.fire({
+                  text: `This email Is Not Signed Up`,
+                  icon: 'error',
+                  confirmButtonText: 'OK'
+              });
+              }
+              else if (errorMessage === "Firebase: Error (auth/missing-password).") {
+                Swal.fire({
+                  text: `Enter Password First`,
+                  icon: 'error',
+                  confirmButtonText: 'OK'
+              });
+              }
+              else if (errorMessage === "Firebase: Error (auth/wrong-password).") {
+                Swal.fire({
+                  text: `Wrong Password Entered`,
+                  icon: 'error',
+                  confirmButtonText: 'OK'
+              });
+              }
         });
 })
 

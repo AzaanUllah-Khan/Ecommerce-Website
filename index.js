@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-analytics.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAzZTOJPWdD_1-aA73_WJyxYOEjthJwxP4",
@@ -156,11 +156,28 @@ fetch('https://dummyjson.com/products')
                         </div>
                         `
         function product(index) {
-            var currentProduct = res.products[index]
-            currentProduct = JSON.stringify(currentProduct)
-            console.log(currentProduct);
-            localStorage.setItem('Current Product', currentProduct)
-            window.location.href = "productpage.html"
+            if (localStorage.getItem('logged') == "true") {
+
+                var currentProduct = res.products[index]
+                currentProduct = JSON.stringify(currentProduct)
+                console.log(currentProduct);
+                localStorage.setItem('Current Product', currentProduct)
+                window.location.href = "productpage.html"
+            }
+            else {
+                Swal.fire({
+                    timer: 1000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                    }
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        location.replace('login.html')
+                    }
+                })
+            }
         }
         window.product = product
     }
@@ -199,10 +216,62 @@ document.getElementById('+').addEventListener('click', () => {
 
 document.getElementById("chatBtn").addEventListener('click', () => {
     if (localStorage.getItem('logged') == "true") {
-        alert('a')
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                // User is signed in, see docs for a list of available properties
+                // https://firebase.google.com/docs/reference/js/auth.user
+                const uid = user.uid;
+                const querySnapshot = await getDocs(collection(db, "users"));
+                querySnapshot.forEach((doc) => {
+                    if (doc.id == uid) {
+                        console.log(`${doc.id} => ${JSON.stringify(doc.data().name)}`);
+                        Swal.fire({
+                            title: 'Submit your Feed Back',
+                            input: 'text',
+                            inputAttributes: {
+                                autocapitalize: 'on'
+                            },
+                            showCancelButton: true,
+                            confirmButtonText: 'Send FeedBack',
+                            showLoaderOnConfirm: true,
+                            allowOutsideClick: () => !Swal.isLoading()
+                        }).then(async(result) => {
+                            if (result.isConfirmed) {
+                                try {
+                                    const docRef = await addDoc(collection(db, "feedback"), {
+                                        sentby: doc.data().name,
+                                        feedBack: result.value
+                                    });
+                                    console.log("Document written with ID: ", docRef.id);
+                                } catch (e) {
+                                    console.error("Error adding document: ", e);
+                                }
+
+                                Swal.fire({
+                                    title: `${doc.data().name} Thanks For Your Feed Back`,
+                                    text: "Feedback Submitted"
+                                })
+                            }
+                        })
+                    }
+                });
+                // ...
+            }
+        });
     }
     if (localStorage.getItem('logged') == "false") {
-        alert('n')
+        Swal.fire({
+            timer: 1000,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading()
+            }
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                location.replace('login.html')
+            }
+        })
     }
 })
 function a() {
@@ -211,6 +280,6 @@ function a() {
     const parsedProducts = JSON.parse(productInCart) || []; // Parse the string as JSON, or use an empty array if null or undefined
     const productCount = parsedProducts.length;
     cartPseudo.setAttribute('data-value', productCount);
-  }
-  
-  setInterval(a, 1000);
+}
+
+setInterval(a, 1000);
