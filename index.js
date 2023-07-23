@@ -238,7 +238,7 @@ document.getElementById("chatBtn").addEventListener('click', () => {
                         }).then(async(result) => {
                             if (result.isConfirmed) {
                                 try {
-                                    const docRef = await addDoc(collection(db, "feedback"), {
+                                    const docRef = await addDoc(collection(db, "feedback+"), {
                                         sentby: doc.data().name,
                                         feedBack: result.value
                                     });

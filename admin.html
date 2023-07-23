@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin-Dashboard | Symbios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="admin.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav>
+        <ul>
+            <div>
+                <li><i class="fa-solid fa-chart-line"></i><p>Over View</p></li>
+                <li><i class="fa-regular fa-clock"></i><p>Pending Orders</p></li>
+                <li><i class="fa-regular fa-circle-check"></i><p>Placed Orders</p></li>
+                <li><i class="fa-solid fa-magnifying-glass"></i><p>Reviews</p></li>
+                <li><i class="fa-solid fa-chart-simple"></i><p>Traffic / User</p></li>
+            </div>
+        </ul>
+            <li class="l" onclick="location.replace('./index.html')"><i class="fa-solid fa-right-from-bracket"></i><p>Logout</p></li>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="users">
+                <h1>Current Costumers</h1>
+                <div style="display: flex;
+                align-items: center;
+                gap: 10px;">
+                    <i class="fa fa-user"></i>
+                    <p id="user">100+</p>
+                </div>
+            </div>
+            <div class="users">
+                <h1>Revenue Generated</h1>
+                <div style="display: flex;
+                align-items: center;
+                gap: 10px;">
+                    <i class="fa fa-dollar"></i>
+                    <p id="money">100+</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="users" style="width: 100%;">
+                <h1>ID Details</h1>
+                <ul id="all"></ul>
+            </div>
+        </div>
+        <canvas id="scatterChart" width="400" height="200"></canvas>
+    </div>
+    <script type="module" src="admin.js"></script>
+</body>
+</html>

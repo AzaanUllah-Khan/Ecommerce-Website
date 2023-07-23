@@ -94,7 +94,11 @@ forgot.addEventListener('click', () => {
         .then(() => {
             // Password reset email sent!
             // ..
-            alert(`You can reset your password email sent on ${email}`)
+            Swal.fire({
+                text: `You can reset your password email sent on ${email}`,
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
             console.log(email);
         })
         .catch((error) => {
@@ -104,3 +108,41 @@ forgot.addEventListener('click', () => {
             // ..
         });
 })
+
+function checkAdmin(){
+    Swal.fire({
+        title: 'Enter Key To Go To Dashboard',
+        input: 'password',
+        inputAttributes: {
+            autocapitalize: 'off'
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Login To Dashboard',
+        showLoaderOnConfirm: true,
+        allowOutsideClick: () => !Swal.isLoading()
+    }).then((result) => {
+        if (result.isConfirmed) {
+            if(result.value == "helloAmAdmin123"){
+                Swal.fire({
+                    icon: "success",
+                    title: `Successfully Logged In To Dashboard`,
+                    text: "Admin Approved",
+                    showConfirmButton: false
+                }).then(
+                    setTimeout(()=>{
+                        location.replace('./admin.html')
+                    },2000)
+                )
+
+            }
+            else{                
+                Swal.fire({
+                    icon: "error",
+                    title: `Wrong Key Entered`,
+                    text: "Admin Dis-Approved"
+                })
+            }
+        }
+    })
+}
+window.checkAdmin = checkAdmin

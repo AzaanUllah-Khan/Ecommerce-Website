@@ -128,18 +128,6 @@
             tp = tp + products[i].price.slice(2) * products[i].qaun
         }
         document.getElementById('price').value = "$ " + tp
-        function appS() {
-            Swal.fire({
-                title: `Purchased !`,
-                text: `Order sent to admin, Wait for its approval | Transaction Amount Deducted ${tp}`,
-                icon: 'success',
-                confirmButtonText: 'OK'
-            });
-            setTimeout(() => {
-                location.replace('./index.html')
-                localStorage.removeItem('products')
-            }, 2000)
-        }
     </script>
     <script type="module" src="checkout.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
