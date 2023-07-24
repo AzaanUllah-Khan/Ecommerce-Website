@@ -57,12 +57,13 @@ async function appS() {
       // Loop through each product in the local storage data
       for (const product of productsData) {
         // Extract the name and price of each product
-        const { title, price } = product;
+        const { title, price, qaun } = product;
   
         // Create a new document in the "orders" collection with only the name and price
         await addDoc(collection(db, 'orders'), {
           name: title,
-          price: price
+          price: price,
+          quan: qaun
         });
       }
   

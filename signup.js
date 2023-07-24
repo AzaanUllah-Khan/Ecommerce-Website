@@ -57,13 +57,15 @@ btn.addEventListener('click', () => {
             text: `User Signed Up !`,
             icon: 'success',
             confirmButtonText: 'OK'
-          });
+          }).then(()=>{
+            window.location.href = 'login.html'
+          }
+          )
         // localStorage.setItem('Name', name)
         // localStorage.setItem('Country', country)
         // localStorage.setItem('Phone', phone)
         // localStorage.setItem('Address', address)
         console.log(user);
-        window.location.href = 'login.html'
         // ...
     })
     .catch((error) => {
